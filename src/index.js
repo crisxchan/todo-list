@@ -1,4 +1,6 @@
 import loadPage from './views/viewModule.js'
+import initTopBar from './logic/topbar/topBar.js'
+import {changeMainDisplay, initTopMenu} from './logic/sidebar/topMenu.js'
 
 /*
 topbar
@@ -17,3 +19,9 @@ projects        (collapsible) (add project at rightmost)
 */
 
 loadPage();
+import { format } from 'path-browserify';
+initTopMenu();
+initTopBar();
+
+
+

@@ -1,0 +1,25 @@
+{   
+    "topMenus": [
+        {
+            "id": 0,
+            "icon": "fa-clipboard-list",
+            "label": "Things to Do",
+            "quantity": 0,
+            "isActiveState": true
+        },
+        {
+            "id": 1,
+            "icon": "fa-calendar",
+            "label": "Today",
+            "quantity": 0,
+            "isActiveState": false
+        },
+        {
+            "id": 2,
+            "icon": "fa-calendar-days",
+            "label": "Upcoming",
+            "quantity": 0,
+            "isActiveState": false
+        }
+    ]       
+}

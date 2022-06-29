@@ -43,6 +43,161 @@ header {
     cursor: pointer;
 }
 
+/* main */
+main {
+    height: 100%;
+    width: 100%;
+}
+
+.main-wrapper {
+    /* border: solid green; */
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+.main-content {
+    width: 100%;
+    border: solid red;
+}
+
+/* card */
+.todo-card {
+    height: 3rem;
+    max-width: 700px;
+    width: 90%;
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.todo-card .text-wrapper {
+    height: 3rem;
+    max-width: 500px;
+    width: 60%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.priority {
+    background-color: green;
+    height: 10px;
+    width: 10px;
+    border-radius: 15px;
+}
+
+.card-tail {
+    height: 100%;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.add-new-card {
+    cursor: pointer;
+    height: 25px;
+    width: 100px;
+    border: 1px solid black;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* sidebar */
+.sidebar {
+    display: block;
+    transition: 0.2s ease;
+    height: 100%;
+    width: 0;
+    opacity: 0;
+    pointer-events: none;
+    border-right: solid aliceblue;
+}
+
+.sidebar.active {
+    width: 300px;
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* sidebar - shared */
+.sidebar-menu {
+    margin: 0;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-card {
+    cursor: pointer;
+    font-size: 0.9em;
+    /* font-weight: bold; */
+    display: flex;
+    height: 40px;
+    padding: 0 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* sidebar - top menu */
+.top-menu {
+    /* border: solid yellow; */
+    list-style-type: none;
+}
+
+.top-menu-card {
+    /* border: solid yellow; */
+    transition: 0.1s ease-in;
+    border-radius: 5px;
+}
+
+.top-menu-card.active, .top-menu-card:hover {
+    background-color: rgb(224, 224, 224);
+}
+
+.lw-menu-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.lw-top-menu-card > i, .quantity {
+    color: #3a3a3a;
+}
+
+.quantity {
+    font-size: 0.8em;
+}
+
+/* sidebar - projects */
+.project-menu {
+}
+
+.project-menu-card {
+    font-weight: bold;
+}
+
+.add-project {
+    transition: 0.1s ease-in;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.add-project:hover {
+    background-color: rgb(224, 224, 224);
+}
+
 /* footer */
 footer {
     justify-content: center;
@@ -54,4 +209,47 @@ footer {
 .ghlogo {
     font-size: 30px;
     color: black;
+}
+
+/* add todo modal */
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    border: solid black;
+    border-radius: 10px;
+    background-color: white;
+    z-index: 10;
+    width: 700px;
+    max-width: 80%;
+}
+
+.modal.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.overlay {
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}
+
+.overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+@media (max-width: 850px){
+    .sidebar {
+        display: none;
+        pointer-events: none;
+    }
 }
