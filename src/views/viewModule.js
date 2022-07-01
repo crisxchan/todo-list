@@ -14,9 +14,10 @@ function getModal(){
     const modal = document.createElement('div');
     modal.classList.add('modal');
 
-    const modalHeader = document.createElement('div');
+    const modalHeader = document.createElement('h3');
     modalHeader.innerHTML = 'Add Task';
     const modalBody = document.createElement('form');
+    modalBody.setAttribute('id', 'modal-body')
     modalBody.method = '';
     modalBody.addEventListener('submit', addTask);
 
@@ -36,21 +37,43 @@ function getModal(){
     date.type = 'date';
 
     const priorityWrapper = document.createElement('div');
+    priorityWrapper.setAttribute('id', 'priority-wrapper');
+
+    const prio1Wrapper = document.createElement('div');
+    prio1Wrapper.classList.add('priority-wrapper')
+    const labelPrio1 = document.createElement('label');
+    labelPrio1.setAttribute('for', "prio-low");
+    labelPrio1.innerHTML = "low";
     const priority1 = document.createElement('input');
     priority1.type = 'radio';
     priority1.name = 'priority';
     priority1.checked = 'true';
-    priority1.id = 'prio-low'
+    priority1.id = 'prio-low';
+    prio1Wrapper.append(priority1, labelPrio1);
+
+    const prio2Wrapper = document.createElement('div');
+    prio2Wrapper.classList.add('priority-wrapper')
+    const labelPrio2 = document.createElement('label');
+    labelPrio2.setAttribute('for', "prio-medium");
+    labelPrio2.innerHTML = "medium";
     const priority2 = document.createElement('input');
     priority2.type = 'radio';
     priority2.name = 'priority';
-    priority2.id = 'prio-medium'
+    priority2.id = 'prio-medium';
+    prio2Wrapper.append(priority2, labelPrio2);
+
+    const prio3Wrapper = document.createElement('div');
+    prio3Wrapper.classList.add('priority-wrapper')
+    const labelPrio3 = document.createElement('label');
+    labelPrio3.setAttribute('for', "prio-high");
+    labelPrio3.innerHTML = "high";
     const priority3 = document.createElement('input');
     priority3.type = 'radio';
     priority3.name = 'priority';
-    priority3.id = 'prio-high'
+    priority3.id = 'prio-high';
+    prio3Wrapper.append(priority3, labelPrio3);
 
-    priorityWrapper.append(priority1, priority2, priority3);
+    priorityWrapper.append(prio1Wrapper, prio2Wrapper, prio3Wrapper);
 
     const addTaskBtn = document.createElement('button');
     addTaskBtn.type = 'submit';

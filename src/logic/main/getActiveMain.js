@@ -1,7 +1,7 @@
 import topMenuList from '../../data/sidebar-top-menu.json5'
 import { getThingsToDo } from '../../views/mainContent/main/thingsToDo';
-import getToday from '../../views/mainContent/main/today';
-import getUpcoming from '../../views/mainContent/main/upcoming';
+import { getToday } from '../../views/mainContent/main/today';
+import { getUpcoming } from '../../views/mainContent/main/upcoming';
 
 export default function getActiveMain(){
     let activeMenu;

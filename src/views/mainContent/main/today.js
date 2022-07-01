@@ -1,15 +1,30 @@
 import { myTasks } from "../../../logic/main/ToDo";
+import { refreshTasks} from "./thingsToDo"
+import { isToday, parseISO } from "date-fns";
 
-export default function getToday(){
+function getToday(){
     const today = document.createElement('div');
+    today.dataset.id = 1;
     today.classList.add('main-content');
     today.innerHTML = 'today';
 
-    // myTasks.sort((a, b) => {
-    //     return new Date(b.date) - new Date(a.date);
-    // });
+    let tasksToday = getTasksToday();
 
-    console.log('today');
+    today.append(refreshTasks(tasksToday, today));
 
     return today;
 }
+
+function getTasksToday(){
+    let tasksToday = [];
+    
+    myTasks.forEach(task => {
+        if(isToday(parseISO(task.date))){
+            tasksToday.push(task);
+        } 
+    });
+
+    return tasksToday;
+}
+
+export { getToday, getTasksToday };

@@ -1,12 +1,12 @@
 import getCard from "./card";
-import { myTasks, createNewToDo, loadExistingToDo } from "../../../logic/main/ToDo";
+import { myTasks, createNewToDo } from "../../../logic/main/ToDo";
 
 function getThingsToDo(){
     const thingsToDo = document.createElement('div');
+    thingsToDo.dataset.id = 0;
     thingsToDo.classList.add('main-content');
 
-    // thingsToDo.append(addNewCardBtn());
-    refreshTasks(thingsToDo);
+    thingsToDo.append(refreshTasks(myTasks, thingsToDo), addNewCardBtn());
 
     return thingsToDo;
 }
@@ -65,19 +65,23 @@ function addTask(e){
 
     createNewToDo(title, desc, date, priority);
 
-    refreshTasks();
+    const thingsToDo = document.querySelector('.main-content');
+    thingsToDo.append(refreshTasks(myTasks, thingsToDo), addNewCardBtn());
 
     closeAddCardModal();
 }
 
-function refreshTasks(thingsToDo = document.querySelector('.main-content')){
+function refreshTasks(myTasks, thingsToDo){
+    const tasksWrapper = document.createElement('div');
     thingsToDo.innerHTML = '';
 
     myTasks.forEach(task => {
         let taskCard = getCard(task.title, task.description, task.date, task.priority, task.status);
-        thingsToDo.appendChild(taskCard);
+        taskCard.dataset.id = task.id;
+        tasksWrapper.appendChild(taskCard);
     });
-    thingsToDo.appendChild(addNewCardBtn());
+
+    return tasksWrapper
 }
 
-export { getThingsToDo, closeAddCardModal, addTask }
+export { getThingsToDo, closeAddCardModal, addTask, addNewCardBtn, refreshTasks }

@@ -1,3 +1,5 @@
+import { initTaskStatus, initTaskDelete } from "../../../logic/main/ToDo";
+
 export default function getCard(cardTitle, cardDesc, cardDate, cardPriority, cardStatus){
     const card = document.createElement('div');
     card.classList.add('todo-card');
@@ -19,9 +21,10 @@ export default function getCard(cardTitle, cardDesc, cardDate, cardPriority, car
     priority.classList.add('priority', cardPriority);
 
     const status = document.createElement('input');
-    status.checked = cardStatus
+    status.checked = cardStatus;
     status.type = 'checkbox';
     status.classList.add('status');
+    initTaskStatus(status);
 
     const tailingDiv = document.createElement('div');
 
@@ -31,13 +34,11 @@ export default function getCard(cardTitle, cardDesc, cardDate, cardPriority, car
     cardDate = (cardDate == '') ? 'NO DATE' : cardDate;
     date.innerHTML = cardDate;
 
-    const editCard = document.createElement('i');
-    editCard.classList.add('fa-solid', 'fa-pen');
-
     const deleteCard = document.createElement('i');
-    deleteCard.classList.add('fa-solid', 'fa-trash'); 
+    deleteCard.classList.add('fa-solid', 'fa-trash');
+    initTaskDelete(deleteCard);
 
-    tailingDiv.append(date, editCard, deleteCard)
+    tailingDiv.append(date, deleteCard)
     tailingDiv.classList.add('card-tail');
 
     card.append(status, priority, textWrapper, tailingDiv);
