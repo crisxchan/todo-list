@@ -1,6 +1,6 @@
 import topMenuList from '../../../../data/sidebar-top-menu.json5';
 
-export default function getTopMenu(){
+function getTopMenu(){
     const topMenu = document.createElement('ul');
     topMenu.classList.add('top-menu', 'sidebar-menu');
     
@@ -37,4 +37,15 @@ function createTopMenuCard(menu){
     return menuCard;
 }
 
+function refreshTaskQuantity(id, menus){
+    const topMenuCard = document.querySelectorAll('.top-menu-card');
+    const quantity = document.querySelectorAll('.quantity');
 
+    if(quantity[id] == undefined) return;
+
+    for(let i=0; i<quantity.length; i++){
+        quantity[i].innerHTML = menus[i].quantity;
+    }
+}
+
+export { getTopMenu, refreshTaskQuantity }

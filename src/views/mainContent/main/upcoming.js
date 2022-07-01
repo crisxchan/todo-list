@@ -6,10 +6,12 @@ function getUpcoming(){
     const upcoming = document.createElement('div');
     upcoming.dataset.id = 2;
     upcoming.classList.add('main-content');
+    const header = document.createElement('h2');
+    header.innerHTML = 'Upcoming';
 
     let upcomingTasks = getUpcomingTasks();
     
-    upcoming.append(refreshTasks(upcomingTasks, upcoming));
+    upcoming.append(header, refreshTasks(upcomingTasks, upcoming));
 
     return upcoming;
 }

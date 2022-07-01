@@ -1,12 +1,19 @@
 import getCard from "./card";
 import { myTasks, createNewToDo } from "../../../logic/main/ToDo";
+import topMenuList from '../../../data/sidebar-top-menu.json5';
+import { refreshTaskQuantity } from "../sideBar/menus/topMenu";
+import { getTasksToday } from "./today";
+import { getUpcomingTasks } from "./upcoming";
+
 
 function getThingsToDo(){
     const thingsToDo = document.createElement('div');
     thingsToDo.dataset.id = 0;
     thingsToDo.classList.add('main-content');
+    const header = document.createElement('h2');
+    header.innerHTML = 'All things to do';
 
-    thingsToDo.append(refreshTasks(myTasks, thingsToDo), addNewCardBtn());
+    thingsToDo.append(header, refreshTasks(myTasks, thingsToDo), addNewCardBtn());
 
     return thingsToDo;
 }
@@ -71,17 +78,31 @@ function addTask(e){
     closeAddCardModal();
 }
 
-function refreshTasks(myTasks, thingsToDo){
+function refreshTasks(tasks, thingsToDo){
     const tasksWrapper = document.createElement('div');
+    tasksWrapper.setAttribute('id', 'task-wrapper');
     thingsToDo.innerHTML = '';
 
-    myTasks.forEach(task => {
+    const menus = topMenuList.topMenus;
+    menus[0].quantity = myTasks.length;
+    menus[1].quantity = getTasksToday().length;
+    menus[2].quantity = getUpcomingTasks().length;
+    refreshTaskQuantity(thingsToDo.dataset.id, menus);
+
+    tasks.forEach(task => {
         let taskCard = getCard(task.title, task.description, task.date, task.priority, task.status);
         taskCard.dataset.id = task.id;
         tasksWrapper.appendChild(taskCard);
     });
 
-    return tasksWrapper
+    if(tasks.length == 0){
+        const nothingToDo = document.createElement('h5');
+        nothingToDo.innerHTML = 'Well, seems like the list is empty...';
+
+        tasksWrapper.append(nothingToDo);
+    }
+
+    return tasksWrapper;
 }
 
 export { getThingsToDo, closeAddCardModal, addTask, addNewCardBtn, refreshTasks }
