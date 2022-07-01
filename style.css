@@ -58,11 +58,22 @@ main {
 
 .main-content {
     width: 100%;
-    border: solid red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-content > div:first-child {
+    margin-bottom: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* card */
 .todo-card {
+    margin-top: 10px;
     height: 3rem;
     max-width: 700px;
     width: 90%;
@@ -82,10 +93,20 @@ main {
 }
 
 .priority {
-    background-color: green;
+    /* background-color: green; */
     height: 10px;
     width: 10px;
     border-radius: 15px;
+}
+
+.priority.low {
+    background-color: green;
+}
+.priority.medium {
+    background-color: orange;
+}
+.priority.high {
+    background-color: crimson;
 }
 
 .card-tail {
@@ -213,6 +234,8 @@ footer {
 
 /* add todo modal */
 .modal {
+    min-width: 250px;
+    height: 300px;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -222,8 +245,11 @@ footer {
     border-radius: 10px;
     background-color: white;
     z-index: 10;
-    width: 700px;
+    width: 400px;
     max-width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .modal.active {
@@ -245,6 +271,77 @@ footer {
 .overlay.active {
     opacity: 1;
     pointer-events: all;
+}
+
+/* modal input */
+#modal-body {
+    height: 100%;
+    /* border: solid red; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#priority-wrapper {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.priority-wrapper {
+    font-size: 12px;
+    font-style: italic;
+    color: grey;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+input[type="radio"] {
+    cursor: pointer;
+    appearance: none;
+    color: black;
+    width: 1.2em;
+    height: 1.2em;
+    border: 0.15em solid black;
+    border-radius: 50%;
+    transition: 0.2s;
+}
+
+input[type="radio"]#prio-low {
+    border: 0.15em solid green;
+}
+input[type="radio"]#prio-low:checked, input[type="radio"]#prio-low:hover {
+    background-color: green;
+}
+
+input[type="radio"]#prio-medium {
+    border: 0.15em solid orange;
+}
+input[type="radio"]#prio-medium:checked, input[type="radio"]#prio-medium:hover {
+    background-color: orange;
+}
+
+input[type="radio"]#prio-high {
+    border: 0.15em solid crimson;
+}
+input[type="radio"]#prio-high:checked, input[type="radio"]#prio-high:hover {
+    background-color: crimson;
+}
+
+button[type="submit"] {
+    cursor: pointer;
+    height: 30px;
+    width: 130px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+button[type="submit"]:active {
+    background-color: grey;
 }
 
 @media (max-width: 850px){
