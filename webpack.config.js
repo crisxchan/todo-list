@@ -1,3 +1,5 @@
+const webpack = require('webpack');
+require('dotenv').config({ path: './.env' });
 const path = require('path');
 const json5 = require('json5');
 
@@ -23,5 +25,10 @@ module.exports = {
                 },
             }
         ]
-    }
+    },
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env': JSON.stringify(process.env),
+        })
+    ]
 }

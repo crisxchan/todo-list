@@ -1,4 +1,3 @@
-
 export default function initScript(){
     const head = document.querySelector('head');
     const faScript = document.createElement('script');
