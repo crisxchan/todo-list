@@ -1,8 +1,5 @@
-import loadPage from './views/viewModule.js'
-import initScript from './logic/initScript'
+import loadPage from './views/viewModule';
+import initScript from './logic/initScript';
 
 initScript();
 loadPage();
-
-
-

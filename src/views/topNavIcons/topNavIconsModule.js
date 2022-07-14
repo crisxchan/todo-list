@@ -1,25 +1,24 @@
-function getTopIcons(){
-    const icons = document.createElement('nav');
-    icons.classList.add('top-nav')
+function getBurger() {
+  const bars = document.createElement('i');
+  bars.classList.add('fa-solid', 'fa-bars', 'nav-icons');
 
-    icons.append(getBurger(), getHome());
-
-    return icons;
+  return bars;
 }
 
-function getBurger(){
-    const bars = document.createElement('i');
-    bars.classList.add('fa-solid', 'fa-bars', 'nav-icons');
+function getHome() {
+  const home = document.createElement('i');
+  home.classList.add('fa-solid', 'fa-house', 'nav-icons');
 
-    return bars;
+  return home;
 }
 
-function getHome(){
-    const home = document.createElement('i');
-    home.classList.add('fa-solid', 'fa-house', 'nav-icons');
+function getTopIcons() {
+  const icons = document.createElement('nav');
+  icons.classList.add('top-nav');
 
-    return home;
+  icons.append(getBurger(), getHome());
+
+  return icons;
 }
-
 
 export default getTopIcons;

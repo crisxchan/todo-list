@@ -1,31 +1,32 @@
-import { myTasks } from "../../../logic/main/ToDo";
-import { isThisWeek, parseISO } from "date-fns";
-import { refreshTasks } from "./thingsToDo";
+/* eslint-disable import/no-cycle */
+import { isThisWeek, parseISO } from 'date-fns';
+import { myTasks } from '../../../logic/main/ToDo';
+import { refreshTasks } from './thingsToDo';
 
-function getUpcoming(){
-    const upcoming = document.createElement('div');
-    upcoming.dataset.id = 2;
-    upcoming.classList.add('main-content');
-    const header = document.createElement('h2');
-    header.innerHTML = 'Upcoming';
+function getUpcomingTasks() {
+  const upcomingTasks = [];
 
-    let upcomingTasks = getUpcomingTasks();
-    
-    upcoming.append(header, refreshTasks(upcomingTasks, upcoming));
+  myTasks.forEach((task) => {
+    if (isThisWeek(parseISO(task.date))) {
+      upcomingTasks.push(task);
+    }
+  });
 
-    return upcoming;
+  return upcomingTasks;
 }
 
-function getUpcomingTasks(){
-    let upcomingTasks = [];
-    
-    myTasks.forEach(task => {
-        if(isThisWeek(parseISO(task.date))){
-            upcomingTasks.push(task);
-        }
-    });
+function getUpcoming() {
+  const upcoming = document.createElement('div');
+  upcoming.dataset.id = 2;
+  upcoming.classList.add('main-content');
+  const header = document.createElement('h2');
+  header.innerHTML = 'Upcoming';
 
-    return upcomingTasks;
+  const upcomingTasks = getUpcomingTasks();
+
+  upcoming.append(header, refreshTasks(upcomingTasks, upcoming));
+
+  return upcoming;
 }
 
 export { getUpcoming, getUpcomingTasks };

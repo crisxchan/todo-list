@@ -1,28 +1,28 @@
-export default function getProjectsMenu(){
-    const projectMenu = document.createElement('div');
-    projectMenu.classList.add('project-menu', 'sidebar-menu');
+function createProjectsCard() {
+  const projectsCard = document.createElement('div');
+  const leftWrapper = document.createElement('div');
+  const menuLabel = document.createElement('div');
+  const icon = document.createElement('i');
+  const tailIcon = document.createElement('i');
 
-    projectMenu.appendChild(createProjectsCard());
+  menuLabel.innerHTML = 'Projects';
+  icon.classList.add('fa-solid', 'fa-greater-than');
+  tailIcon.classList.add('fa-solid', 'fa-plus', 'add-project');
 
-    return projectMenu;
+  leftWrapper.append(icon, menuLabel);
+  leftWrapper.classList.add('lw-menu-card');
+
+  projectsCard.append(leftWrapper, tailIcon);
+  projectsCard.classList.add('project-menu-card', 'menu-card');
+
+  return projectsCard;
 }
 
-function createProjectsCard(){
-    const projectsCard = document.createElement('div');
-    const leftWrapper = document.createElement('div');
-    const menuLabel = document.createElement('div');
-    const icon = document.createElement('i');
-    const tailIcon = document.createElement('i');
+export default function getProjectsMenu() {
+  const projectMenu = document.createElement('div');
+  projectMenu.classList.add('project-menu', 'sidebar-menu');
 
-    menuLabel.innerHTML = 'Projects';
-    icon.classList.add('fa-solid', 'fa-greater-than');
-    tailIcon.classList.add('fa-solid', 'fa-plus', 'add-project');
+  projectMenu.appendChild(createProjectsCard());
 
-    leftWrapper.append(icon, menuLabel);
-    leftWrapper.classList.add('lw-menu-card');
-
-    projectsCard.append(leftWrapper, tailIcon);
-    projectsCard.classList.add('project-menu-card', 'menu-card');
-
-    return projectsCard;
+  return projectMenu;
 }

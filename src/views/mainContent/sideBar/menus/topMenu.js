@@ -1,51 +1,51 @@
 import topMenuList from '../../../../data/sidebar-top-menu.json5';
 
-function getTopMenu(){
-    const topMenu = document.createElement('ul');
-    topMenu.classList.add('top-menu', 'sidebar-menu');
-    
-    const menus = topMenuList.topMenus;
+function createTopMenuCard(menu) {
+  const menuCard = document.createElement('div');
+  const leftWrapper = document.createElement('div');
+  const menuLabel = document.createElement('li');
+  const icon = document.createElement('i');
+  const quantity = document.createElement('div');
 
-    menus.forEach(menu => {
-        topMenu.appendChild(createTopMenuCard(menu));
-    })
+  icon.classList.add('fa-solid', menu.icon);
+  menuLabel.innerHTML = menu.label;
+  quantity.innerHTML = menu.quantity;
+  quantity.classList.add('quantity');
 
-    return topMenu;
+  leftWrapper.append(icon, menuLabel);
+  leftWrapper.classList.add('lw-menu-card');
+
+  menuCard.append(leftWrapper, quantity);
+  menuCard.classList.add('top-menu-card', 'menu-card');
+  if (menu.isActiveState) menuCard.classList.add('active');
+
+  menuCard.dataset.id = menu.id;
+
+  return menuCard;
 }
 
-function createTopMenuCard(menu){
-    const menuCard = document.createElement('div');
-    const leftWrapper = document.createElement('div');
-    const menuLabel = document.createElement('li');
-    const icon = document.createElement('i');
-    const quantity = document.createElement('div');
+function refreshTaskQuantity(id, menus) {
+  const quantity = document.querySelectorAll('.quantity');
 
-    icon.classList.add('fa-solid', menu.icon);
-    menuLabel.innerHTML = menu.label;
-    quantity.innerHTML = menu.quantity;
-    quantity.classList.add('quantity');
+  // eslint-disable-next-line eqeqeq
+  if (quantity[id] == undefined) return;
 
-    leftWrapper.append(icon, menuLabel);
-    leftWrapper.classList.add('lw-menu-card');
-
-    menuCard.append(leftWrapper, quantity);
-    menuCard.classList.add('top-menu-card', 'menu-card');
-    if(menu.isActiveState) menuCard.classList.add('active');
-
-    menuCard.dataset.id = menu.id;
-
-    return menuCard;
+  for (let i = 0; i < quantity.length; i + 1) {
+    quantity[i].innerHTML = menus[i].quantity;
+  }
 }
 
-function refreshTaskQuantity(id, menus){
-    const topMenuCard = document.querySelectorAll('.top-menu-card');
-    const quantity = document.querySelectorAll('.quantity');
+function getTopMenu() {
+  const topMenu = document.createElement('ul');
+  topMenu.classList.add('top-menu', 'sidebar-menu');
 
-    if(quantity[id] == undefined) return;
+  const menus = topMenuList.topMenus;
 
-    for(let i=0; i<quantity.length; i++){
-        quantity[i].innerHTML = menus[i].quantity;
-    }
+  menus.forEach((menu) => {
+    topMenu.appendChild(createTopMenuCard(menu));
+  });
+
+  return topMenu;
 }
 
-export { getTopMenu, refreshTaskQuantity }
+export { getTopMenu, refreshTaskQuantity };
