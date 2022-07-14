@@ -1,3 +1,5 @@
+import initTopBar from "../logic/topbar/topBar";
+import { initTopMenu } from "../logic/sidebar/topMenu";
 import getTopIcons from "./topNavIcons/topNavIconsModule";
 import getMainContent from "./mainContent/mainContentModule";
 import { closeAddCardModal, addTask } from "./mainContent/main/thingsToDo.js"
@@ -6,6 +8,9 @@ function loadPage(){
     const body = document.querySelector('body');
 
     body.append(getModal(), getHeader(), getMain(), getFooter());
+
+    initTopMenu();
+    initTopBar();
 }
 
 function getModal(){
