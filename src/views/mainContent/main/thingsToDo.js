@@ -52,6 +52,7 @@ function refreshTasks(tasks, thingsToDo) {
   menus[0].quantity = myTasks.length;
   menus[1].quantity = getTasksToday().length;
   menus[2].quantity = getUpcomingTasks().length;
+
   refreshTaskQuantity(thingsToDo.dataset.id, menus);
 
   tasks.forEach((task) => {
@@ -92,6 +93,7 @@ function addTask(e) {
   createNewToDo(title, desc, date, priority);
 
   const thingsToDo = document.querySelector('.main-content');
+
   thingsToDo.append(refreshTasks(myTasks, thingsToDo), addNewCardBtn());
 
   closeAddCardModal();

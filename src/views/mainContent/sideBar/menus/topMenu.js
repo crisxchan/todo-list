@@ -30,7 +30,7 @@ function refreshTaskQuantity(id, menus) {
   // eslint-disable-next-line eqeqeq
   if (quantity[id] == undefined) return;
 
-  for (let i = 0; i < quantity.length; i + 1) {
+  for (let i = 0; i < quantity.length; i++) {
     quantity[i].innerHTML = menus[i].quantity;
   }
 }

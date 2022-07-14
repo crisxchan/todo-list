@@ -42,7 +42,7 @@ function initTaskDelete(deleteTask) {
     const index = e.target.parentElement.parentElement.dataset.id;
     myTasks.splice(index, 1);
 
-    for (let i = 0; i < myTasks.length; i + 1) {
+    for (let i = 0; i < myTasks.length; i++) {
       myTasks[i].id = i;
     }
 
